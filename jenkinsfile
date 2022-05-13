@@ -1,0 +1,34 @@
+pipeline {
+    agent {
+        label "core"
+    }
+    environment {
+        OS_USER = 'epalogan'
+        PRODUCT_NAME_DIR = "digital-experience"
+        VERSION_NAME_DIR = "kb"
+        UPLOAD_TARGET_DIR = "${env.PRODUCT_NAME_DIR + '/' + env.VERSION_NAME_DIR}"
+    }
+    stages {
+        stage('Building KB') {
+            steps {
+                dir('kb') {
+                    nodejs('node') {
+                        sh "npm install"
+                        sh "npx docusaurus --version"
+                        sh "npx docusaurus build"
+                        sh "ls -latrh"
+                    }
+                }
+            }
+        }
+        stage('Deploying KB') {
+            steps {
+                dir('kb') {
+                    sh "sudo chmod -R 777 build/"
+                    sh "sudo chown ${OS_USER} -R build/"
+                    sh "sudo cp -rf build/. /var/www/html/${UPLOAD_TARGET_DIR}"
+                }
+            }
+        }
+    }
+}

@@ -1,2 +1,48 @@
-# OMS-documentation
-This is the docs repository for OMS
+# Getting Started
+
+Before you dive into this docs, first you need to have your environment setup. You need the following apps to install.
+
+- [nodejs](https://nodejs.org/en/download/)
+
+## Starting the Local Server
+
+To start the local server, open you command line/terminal and go to this directory (.../digital-experience/kb/). Then execute the command below.
+
+```
+npm install
+npx docusaurus start
+```
+
+# Website
+
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+
+### Installation
+
+```
+$ yarn
+```
+
+### Local Development
+
+```
+$ yarn start
+```
+
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+
+### Build
+
+```
+$ yarn build
+```
+
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
+
+### Deployment
+
+```
+$ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
+```
+
+If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
